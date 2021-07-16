@@ -1,0 +1,28 @@
+{% extends './base.html' %}
+
+
+{% block content %}
+<h2>{{ menu }}</h2>
+<a href="{% url "create_option" menu.pk %}">Add Option</a>
+<a href="{% url "order_create" %}">Add Order</a>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Option</th>
+    <th>Actions</th>
+  </tr>
+  {% for option in options %}
+  <tr>
+    <td>{{ option.id }}</td>
+    <td>{{ option.title_option }}</td>
+    <td><a href="{% url 'edit_option' menu.pk option.pk %}">Edit</a> <a href="{% url 'delete_option' menu.pk option.pk %}">Eliminate</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+
+
+
+
+

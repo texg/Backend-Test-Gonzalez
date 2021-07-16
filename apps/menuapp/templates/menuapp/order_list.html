@@ -1,0 +1,21 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Worker</th>
+    <th>Order</th>
+    <th>Comments</th>
+  </tr>
+{% for order in orders %}
+  <tr>
+    <td>{{ order.email_worker }}</td>
+    <td>{{ order.name_worker }}</td>
+    <td>{{ order.option_selected }}</td>
+    <td>{{ order.comment }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 4px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+    <nav>
+    <a href="{% url 'menu_list' %}">Menus</a>
+    <a href="{% url 'order_list' %}">Orders</a>
+    </nav>
+
+    {% block content%}
+    {% endblock %}
+</body>
+</html>

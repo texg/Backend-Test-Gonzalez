@@ -1,0 +1,19 @@
+{% extends './base.html' %}
+
+{% block content %}
+<a href="{% url "menu_create" %}">Add Menu</a>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+    <th>Actions</th>
+  </tr>
+  {% for menu in menus %}
+  <tr>
+    <td>{{ menu.title_menu }}</td>
+    <td>{{ menu.menu_date|date:'Y-m-d' }}</td>
+    <td><a href="{% url 'menu_detail' menu.id %}">See</a> <a href="{% url 'menu_delete' menu.id %}">Eliminate</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
