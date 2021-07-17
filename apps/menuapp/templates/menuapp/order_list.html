@@ -1,4 +1,40 @@
+
 {% extends './base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+  <div class="class="card" style="width: 55rem;"">
+      <div class="card-header card-title text-center">
+        <h5>Orders List</h5>
+      </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Worker</th>
+        <th scope="col">Order</th>
+        <th scope="col">Specific customizations</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr scope="row">
+        <td>{{ order.email_worker }}</td>
+        <td>{{ order.name_worker }}</td>
+        <td>{{ order.option_selected }}</td>
+        <td>{{ order.comment }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+      <div class="card-footer">
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% comment %} {% extends './base.html' %}
 
 {% block content %}
 
@@ -18,4 +54,4 @@
   </tr>
   {% endfor %}
 </table>
-{% endblock %}
+{% endblock %} {% endcomment %}

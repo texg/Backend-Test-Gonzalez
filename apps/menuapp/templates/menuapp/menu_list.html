@@ -1,19 +1,34 @@
 {% extends './base.html' %}
 
 {% block content %}
-<a href="{% url "menu_create" %}">Add Menu</a>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Date</th>
-    <th>Actions</th>
-  </tr>
-  {% for menu in menus %}
-  <tr>
-    <td>{{ menu.title_menu }}</td>
-    <td>{{ menu.menu_date|date:'Y-m-d' }}</td>
-    <td><a href="{% url 'menu_detail' menu.id %}">See</a> <a href="{% url 'menu_delete' menu.id %}">Eliminate</a></td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="d-flex justify-content-center">
+  <div class="class="card" style="width: 40rem;"">
+      <div class="card-header card-title text-center">
+        <h5>{{ menu }}</h5>
+      </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
+        {% if user.is_authenticated %}
+        <th scope="col">Actions</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for menu in menus %}
+      <tr scope="row">
+        <td>{{ menu.title_menu }}</td>
+        <td>{{ menu.menu_date|date:'Y-m-d' }}</td>
+        <td><a href="{% url 'menu_detail' menu.id %}">See</a> <a href="{% url 'menu_delete' menu.id %}">Eliminate</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+      <div class="card-footer">
+        <a class="btn btn-outline-primary" href="{% url "menu_create" %}">Add Menu</a>
+      </div>
+  </div>
+</div>
 {% endblock %}
