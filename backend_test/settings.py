@@ -147,6 +147,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, "../collected_static")
 STATIC_URL = "/static/"
 
+
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ["rest_framework.renderers.JSONRenderer"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -236,3 +237,8 @@ LOGGING = {
         },
     },
 }
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
