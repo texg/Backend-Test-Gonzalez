@@ -1,14 +1,14 @@
-from django.http.response import Http404
+from django.http.response import Http404, HttpResponse
 from django.shortcuts import redirect, render
 from .models import Option, Menu, Order
 from django.views.generic import TemplateView, ListView
 from .forms import MenuCreate, OptionCreate, OrderCreate
-
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
 def home(request):
    return render(request, 'menuapp/home.html')
 
+@login_required
 def menu_create(request):
     if request.method == "POST":
         form = MenuCreate(request.POST)
@@ -20,6 +20,7 @@ def menu_create(request):
 
     return render(request, 'menuapp/menu_create.html', {'form': form})
 
+@login_required
 def menu_list(request):
     menus = Menu.objects.all()
     return render(request, 'menuapp/menu_list.html', {'menus': menus})
@@ -33,11 +34,13 @@ def menu_detail(request, pk):
 
     return render(request, 'menuapp/menu_detail.html', context={'menu': menu, 'options': options})
 
+@login_required
 def menu_delete(request, pk):
     menus = Menu.objects.get(id=pk)
     menus.delete()
     return redirect('menu_list')
 
+@login_required
 def option_create(request, pk):
     if request.method == "POST":
         form = OptionCreate(request.POST)
@@ -49,6 +52,7 @@ def option_create(request, pk):
         form = OptionCreate()
     return render(request, 'menuapp/option_add.html', {'form': form})
 
+@login_required
 def option_edit(request, menu_pk, pk):
     if request.method == "POST":
         form = OptionCreate(request.POST, instance=Option.objects.get(pk=pk))
@@ -60,14 +64,17 @@ def option_edit(request, menu_pk, pk):
         form = OptionCreate(instance=Option.objects.get(pk=pk))
     return render(request, 'menuapp/option_add.html', {'form': form})
 
+@login_required
 def option_delete(request, menu_pk, pk):
     options = Option.objects.get(id=pk)
     options.delete()
     return redirect('menu_detail', pk=menu_pk)
 
+@login_required
 def order_list(request):
     orders = Order.objects.all()
     return render(request, 'menuapp/order_list.html', {'orders': orders})
+
 
 def order_create(request, menu_pk):
     if request.method == "POST":
