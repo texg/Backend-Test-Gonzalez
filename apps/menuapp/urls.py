@@ -13,5 +13,5 @@ urlpatterns = [
     path('menu/<menu_pk>/option/edit/<pk>', views.option_edit, name="edit_option"),
     path('menu/<menu_pk>/option/delete/<pk>', views.option_delete, name="delete_option"),
     path('order/list', views.order_list, name="order_list"),
-    path('order/create', views.order_create, name="order_create"),
+    path('order/create/<menu_pk>/order/', views.order_create, name="order_create"),
 ]

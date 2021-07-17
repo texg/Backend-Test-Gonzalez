@@ -28,3 +28,7 @@ class OrderCreate(forms.ModelForm):
     class Meta:
         model = Order
         fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["option_selected"]

@@ -4,7 +4,7 @@
 {% block content %}
 <h2>{{ menu }}</h2>
 <a href="{% url "create_option" menu.pk %}">Add Option</a>
-<a href="{% url "order_create" %}">Add Order</a>
+<a href="{% url "order_create" menu.pk %}">Add Order</a>
 
 <table>
   <tr>
