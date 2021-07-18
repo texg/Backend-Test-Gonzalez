@@ -1,18 +1,20 @@
 from django.db import models
-from django.utils import timezone
 from uuid import uuid4
-import arrow
+
 
 # Create your models here.
+
 class Menu(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4())
     title_menu = models.CharField(max_length=200)
     menu_date = models.DateTimeField(
-            blank=True, null=True
+        blank=True,
+        null=True
     )
 
     def __str__(self):
         return self.title_menu
+
 
 class Option(models.Model):
     title_option = models.CharField(max_length=200)
@@ -20,6 +22,7 @@ class Option(models.Model):
 
     def __str__(self):
         return self.title_option
+
 
 class Order(models.Model):
     email_worker = models.CharField(max_length=200)
