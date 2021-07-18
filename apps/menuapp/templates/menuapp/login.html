@@ -1,14 +1,25 @@
 {% extends './base.html' %}
 
 {% block content %}
-<form method="POST" enctype="multipart/form-data">
+<div class="d-flex justify-content-center">
+  <div class="class="card" style="width: 40rem;"">
+      <div class="card-header card-title text-center">
+        <h5>Login</h5>
+      </div>
+      <div style="text-align:center;">
+        <form method="POST" enctype="multipart/form-data">
 
-    <!-- Security token -->
-    {% csrf_token %}
+            <!-- Security token -->
+            {% csrf_token %}
 
-    <!-- Using the formset -->
-    {{ form.as_p }}
+            <!-- Using the formset -->
+            {{ form.as_p }}
 
     <input type="submit" value="Submit">
 </form>
+      </div>
+      <div class="card-footer">
+      </div>
+  </div>
+</div>
 {% endblock %}
