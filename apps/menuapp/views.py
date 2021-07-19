@@ -26,7 +26,7 @@ def menu_create(request):
 
 @login_required
 def menu_list(request):
-    menus = Menu.objects.all()
+    menus = Menu.objects.order_by("-menu_date")
     return render(request, 'menuapp/menu_list.html', {'menus': menus})
 
 
