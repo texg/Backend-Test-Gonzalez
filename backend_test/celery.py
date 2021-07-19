@@ -4,6 +4,7 @@ from celery import Celery
 
 from .envtools import getenv
 
+from celery.schedules import crontab
 
 class CelerySettings:
     # Settings for version 4.3.0
@@ -70,3 +71,12 @@ settings = CelerySettings()
 app = Celery("backend_test")
 app.config_from_object(settings)
 app.autodiscover_tasks()
+
+app.conf.beat_schedule = {
+    # Executes every Monday morning at 7:30 a.m.
+    'add-every-monday-morning': {
+        'task': 'apps.menuapp.slack_message.send_menu_today_slack',
+        'schedule': crontab(hour=8),
+        'args': (),
+    },
+}
