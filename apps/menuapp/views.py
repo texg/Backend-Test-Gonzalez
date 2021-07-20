@@ -86,17 +86,6 @@ def order_list(request):
     return render(request, 'menuapp/order_list.html', {'orders': orders})
 
 
-# def order_create(request, menu_pk):
-#     if request.method == "POST":
-#         form = OrderCreate(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('home')
-#     else:
-#         form = OrderCreate()
-#         form.fields['option_selected'].queryset = Option.objects.filter(menu=menu_pk)
-#     return render(request, 'menuapp/order_create.html', {'form': form})
-
 def order_create(request, menu_pk):
     if request.method == "POST":
         form = OrderCreate(request.POST)
